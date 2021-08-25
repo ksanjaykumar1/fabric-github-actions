@@ -1,0 +1,9 @@
+Name: Hello World
+on: [push]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: printing hello World
+        run: echo "Hello world"
