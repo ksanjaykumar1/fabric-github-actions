@@ -9,8 +9,8 @@
 const { Gateway, Wallets } = require('fabric-network');
 const FabricCAServices = require('fabric-ca-client');
 const path = require('path');
-const { buildCAClient, registerAndEnrollUser, enrollAdmin } = require('CAUtil.js');
-const { buildCCPOrg1, buildWallet } = require('AppUtil.js');
+const { buildCAClient, registerAndEnrollUser, enrollAdmin } = require('./CAUtil.js');
+const { buildCCPOrg1, buildWallet } = require('./AppUtil');
 
 const channelName = 'mychannel';
 const chaincodeName = 'basic';
