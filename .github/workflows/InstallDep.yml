@@ -34,4 +34,4 @@ jobs:
       - name: clone repo using checkout action
         uses: actions/checkout@v1
       - name: List files
-        uses: ls -a
+        run: ls -a
