@@ -12,3 +12,6 @@ network/organizations/peerOrganizations/*
 network/system-genesis-block/*
 network/*.tar.gz
 network/log.txt
+
+
+#  chaincode node_moudles ignore
