@@ -21,11 +21,17 @@ jobs:
         run: npm -v
       - name: List Existing files and folder
         run: ls -a
-      - name: Install fabric binaries
-        run: curl -L --retry 5 --retry-delay 3 https://hyperledger.jfrog.io/hyperledger/fabric-binaries/hyperledger-fabric-ca-linux-amd64-${FABRIC_VERSION}-stable.tar.gz | tar xz
-      - name : List Current files and folders
-        run: |
-          ls -a
-          tree
-      - name : List binary files 
-        run: ls -a bin
+      # - name: Install fabric binaries
+      #   run: |
+      #     curl -L --retry 5 --retry-delay 3 https://hyperledger.jfrog.io/hyperledger/fabric-binaries/hyperledger-fabric-linux-amd64-${FABRIC_VERSION}-stable.tar.gz | tar xz
+      #     curl -L --retry 5 --retry-delay 3 https://hyperledger.jfrog.io/hyperledger/fabric-binaries/hyperledger-fabric-ca-linux-amd64-${FABRIC_VERSION}-stable.tar.gz | tar xz
+      # - name : List Current files and folders
+      #   run: |
+      #     ls -a
+      #     tree
+      # - name : List binary files 
+      #   run: ls -a bin
+      - name: clone repo using checkout action
+        uses: actions/checkout@v1
+      - name: List files
+        uses: ls -a
