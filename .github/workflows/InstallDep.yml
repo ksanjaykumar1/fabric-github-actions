@@ -1,0 +1,15 @@
+name: Install dependencies
+on: [push]
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pre installed node versions
+        run: node -v
+      - name: Install nodejs 12.x
+        uses: actions/setup-node@v1
+        with:
+          node_version: 12
+      - name: Current node versions
+        run: node -v
