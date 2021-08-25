@@ -1,5 +1,9 @@
 name: Install dependencies
 on: [push]
+env:
+  FABRIC_VERSION: 2.4
+  NODE_VER: 12.x
+  
 
 jobs:
   install:
@@ -15,3 +19,9 @@ jobs:
         run: node -v
       - name: Current npm versions
         run: npm -v
+      - name: List Existing files and folder
+        run: ls -a
+      - name: Install fabric binaries
+        run: curl -L --retry 5 --retry-delay 3 https://hyperledger.jfrog.io/hyperledger/fabric-binaries/hyperledger-fabric-ca-linux-amd64-${FABRIC_VERSION}-stable.tar.gz | tar xz
+      - name : List Current files and folders
+        run: ls -a 
