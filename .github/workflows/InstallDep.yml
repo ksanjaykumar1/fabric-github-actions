@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v1
       - name: List files
         run: ls -a
-      - name: Install binaries
+      - name: Download binaries and docker images
         run: |
           curl -sSL https://bit.ly/2ysbOFE | bash -s -- ${FABRIC_VERSION} ${CA_VERSION}  -s
           tree
@@ -45,4 +45,6 @@ jobs:
           cd network
           ./network.sh up -ca
       - name: Create Channel called mychannel
-        run: ./network.sh createChannel
+        run: |
+          cd network
+          ./network.sh createChannel
