@@ -10,7 +10,7 @@ jobs:
       - name: Install nodejs 12
         uses: actions/setup-node@v1
         with:
-          node_version: '12'
+          node-version: '12'
       - name: Current node versions
         run: node -v
       - name: Current npm versions
