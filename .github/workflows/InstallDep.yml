@@ -48,27 +48,3 @@ jobs:
         run: |
           cd network
           ./network.sh createChannel
-      - name: Install libaries  for Chaincode
-        run: |
-          cd asset-transfer-basic/chaincode-javascript/
-          npm install
-      - name: Deploy Chaincode
-        run: |
-          cd network
-          ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript/ -ccl javascript -cci InitLedger 
-      - name: Run Chaincode Tests
-        run: |
-          cd asset-transfer-basic/chaincode-javascript/
-          npm run test
-      - name: Install libaries for Application 
-        run: |
-          cd asset-transfer-basic/application-javascript
-          npm install
-      - name: Run the application 
-        run: |
-          cd asset-transfer-basic/application-javascript
-          node app.js
-
-
-        
-
