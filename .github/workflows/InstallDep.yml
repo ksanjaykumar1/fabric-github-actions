@@ -38,5 +38,11 @@ jobs:
         run: ls -a
       - name: Install binaries
         run: |
-          cd network
           curl -sSL https://bit.ly/2ysbOFE | bash -s -- ${FABRIC_VERSION} ${CA_VERSION}  -s
+          tree
+      - name: Create network using leveldb and Certificate Authority
+        run:
+          cd network
+          ./network.sh up -ca
+      - name: Create Channel called mychannel
+        run: ./network.sh createChannel
