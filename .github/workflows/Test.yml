@@ -7,7 +7,17 @@ env:
   
 
 jobs:
-  install:
+  test:
+    strategy:
+      matrix:
+        chaincode: [basic, events]
+        include:
+          - chaincode: basic
+            folderName: asset-transfer-basic
+            parseFlagForInitFunction: -cci
+            initFunction: InitLedger
+          - chaincode: events
+            folderName: asset-transfer-events       
     runs-on: ubuntu-latest
     steps:
       - name: Install nodejs 12
@@ -32,15 +42,15 @@ jobs:
           ./network.sh createChannel
       - name: Install libaries  for Chaincode
         run: |
-          cd asset-transfer-basic/chaincode-javascript/
+          cd ${{matrix.folderName}}/chaincode-javascript/
           npm install
       - name: Deploy Chaincode
         run: |
           cd network
-          ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript/ -ccl javascript -cci InitLedger 
+          ./network.sh deployCC -ccn ${{matrix.chaincode}} -ccp ../${{matrix.folderName}}/chaincode-javascript/ -ccl javascript ${{matrix.parseFlagForInitFunction}} ${{matrix.initFunction}} 
       - name: Run Chaincode Tests
         run: |
-          cd asset-transfer-basic/chaincode-javascript/
+          cd ${{matrix.folderName}}/chaincode-javascript/
           npm run test
 
 
