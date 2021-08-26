@@ -1,0 +1,46 @@
+name: Run App 
+on : push
+jobs:
+  run-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install nodejs 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: clone repo using checkout action
+        uses: actions/checkout@v1
+      - name: List files
+        run: ls -a
+      - name: Download binaries and docker images
+        run: |
+          curl -sSL https://bit.ly/2ysbOFE | bash -s -- ${FABRIC_VERSION} ${CA_VERSION}  -s
+          tree
+      - name: Create network using leveldb and Certificate Authority
+        run: |
+          cd network
+          ./network.sh up -ca
+      - name: Create Channel called mychannel
+        run: |
+          cd network
+          ./network.sh createChannel
+      - name: Install libaries  for Chaincode
+        run: |
+          cd asset-transfer-basic/chaincode-javascript/
+          npm install
+      - name: Deploy Chaincode
+        run: |
+          cd network
+          ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript/ -ccl javascript -cci InitLedger 
+      - name: Install libaries  for Chaincode Application
+        run: |
+          cd asset-transfer-basic/application-javascript
+          npm install
+      - name: Run the Application
+        run: |
+          cd asset-transfer-basic/application-javascript
+          node app.js
+
+
+        
+
