@@ -19,7 +19,7 @@ jobs:
             folderName: asset-transfer-events
     runs-on: ubuntu-latest
     steps:
-      - name: Install nodejs 12
+      - name: Install nodejs ${NODE_VER}
         uses: actions/setup-node@v1
         with:
           node-version: ${NODE_VER}
