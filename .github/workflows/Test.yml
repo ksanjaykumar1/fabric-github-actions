@@ -20,17 +20,17 @@ jobs:
             folderName: asset-transfer-events       
     runs-on: ubuntu-latest
     steps:
-      - name: Install nodejs ${NODE_VER}
+      - name: Install nodejs ${env.NODE_VER}
         uses: actions/setup-node@v1
         with:
-          node-version: ${NODE_VER}
+          node-version: ${env.NODE_VER}
       - name: clone repo using checkout action
         uses: actions/checkout@v1
       - name: List files
         run: ls -a
       - name: Download binaries and docker images
         run: |
-          curl -sSL https://bit.ly/2ysbOFE | bash -s -- ${FABRIC_VERSION} ${CA_VERSION}  -s
+          curl -sSL https://bit.ly/2ysbOFE | bash -s -- ${env.FABRIC_VERSION} ${env.CA_VERSION}  -s
           tree
       - name: Create network using leveldb and Certificate Authority
         run: |
