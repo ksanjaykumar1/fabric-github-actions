@@ -1,5 +1,10 @@
 name: Run App 
 on : push
+env:
+  FABRIC_VERSION: 2.2.2
+  CA_VERSION: 1.4.9
+  NODE_VER: 12
+
 jobs:
   run-app:
     strategy:
@@ -17,7 +22,7 @@ jobs:
       - name: Install nodejs 12
         uses: actions/setup-node@v1
         with:
-          node-version: '12'
+          node-version: ${NODE_VER}
       - name: clone repo using checkout action
         uses: actions/checkout@v1
       - name: List files

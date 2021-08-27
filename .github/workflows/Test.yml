@@ -3,7 +3,7 @@ on: [push]
 env:
   FABRIC_VERSION: 2.2.2
   CA_VERSION: 1.4.9
-  NODE_VER: 12.x
+  NODE_VER: 12
   
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
       - name: Install nodejs 12
         uses: actions/setup-node@v1
         with:
-          node-version: '12'
+          node-version: ${NODE_VER}
       - name: clone repo using checkout action
         uses: actions/checkout@v1
       - name: List files
@@ -52,6 +52,13 @@ jobs:
         run: |
           cd ${{matrix.folderName}}/chaincode-javascript/
           npm run test
+      - name: upload test coverage
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage-${{matrix.chaincode}}
+          path: ${{matrix.folderName}}/chaincode-javascript/coverage
+        
+          
 
 
         
