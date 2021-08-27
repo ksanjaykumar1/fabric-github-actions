@@ -39,7 +39,7 @@ jobs:
         run: |
           cd network
           ./network.sh createChannel
-      - name: Install libaries  for Chaincode
+      - name: Install packages  for Chaincode
         run: |
           cd ${{matrix.folderName}}/chaincode-javascript/
           npm install
@@ -47,7 +47,7 @@ jobs:
         run: |
           cd network
           ./network.sh deployCC -ccn ${{matrix.chaincode}} -ccp ../${{matrix.folderName}}/chaincode-javascript/ -ccl javascript ${{matrix.parseFlagForInitFunction}} ${{matrix.initFunction}} 
-      - name: Install libaries  for Chaincode Application
+      - name: Install packages  for Chaincode Application
         run: |
           cd ${{matrix.folderName}}/application-javascript
           npm install

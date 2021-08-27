@@ -1,5 +1,6 @@
 name: Test
-on: [push]
+on: 
+  push
 env:
   FABRIC_VERSION: 2.2.2
   CA_VERSION: 1.4.9
@@ -40,7 +41,7 @@ jobs:
         run: |
           cd network
           ./network.sh createChannel
-      - name: Install libaries  for Chaincode
+      - name: Install packages  for Chaincode
         run: |
           cd ${{matrix.folderName}}/chaincode-javascript/
           npm install
